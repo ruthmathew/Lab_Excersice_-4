@@ -7,35 +7,41 @@ let calculator = {
     
     
     // addition function
-    add: function(number){
+    add: function(numberArray){
         let add = 0;
-        add = add + parseInt(number);
+        numberArray.forEach( numberArray => {
+            add = add + parseInt(numberArray);
+            }
+        )
         return add;
     },
-
+    
     // substraction function
     sub: function(number1, number2){
-        return (number1 - number2);
+        return (parseInt(number1) - parseInt(number2));
     },
 
 
     // multiplication function
-    multiply: function(number){
-        let mul = 1;
-        mul = mul * parseInt(number);
-        return mul;
+    mul: function(numberArray){
+        let multi = 1;
+        numberArray.forEach( numberArray => {
+            multi = multi * parseInt(numberArray);
+            }
+        )
+        return multi;
     },
 
     //division function
 
     divide: function(number1, number2){
 
-        if (this.secondNumber != 0){
-            return (number1 / number2);
+        if (parseInt(this.secondNumber) != 0){
+            return Number.parseFloat(number1 / number2).toFixed(2);
         }
 
         else{
-            console.log(" ni number is divisble by 0. ");
+            console.log(" no number is divisble by 0. ");
         }
         
     },
@@ -45,7 +51,7 @@ let calculator = {
         let answer;
     
         if (choosen == "add"){
-            answer = this.numberArray.forEach(this.add);
+            answer = calculator.add(calculator.numberArray);
             
             
         }
@@ -56,12 +62,12 @@ let calculator = {
         }
 
         if (choosen == "mul"){
-            answer = this.numberArray.forEach(this.mul);
+            answer = calculator.mul(calculator.numberArray);
             
         }
 
         if (choosen == "div"){
-            answer = this.div(this.firstNumber, this.secondNumber);
+            answer = this.divide(this.firstNumber, this.secondNumber);
             
         }
 
@@ -93,7 +99,7 @@ if (choosen == "sub" || choosen == "div"){
 // insert the value of the array
 
 for (let i = 0; i < parseInt(arrayNumber); i++){
-    calculator.numberArray[i] = prompt(" number " + i);
+    calculator.numberArray[i] = prompt(" number " + (i + 1));
 }
 
 (function (){
