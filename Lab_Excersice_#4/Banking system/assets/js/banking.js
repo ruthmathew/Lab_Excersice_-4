@@ -1,13 +1,14 @@
 // banking system object
 
 let banking = {
+
     account1: 60.0,
     account1Number: 1,
     account2: 60.0,
     account2Number: 2,
     amount: 0,
-    accountName: "",
-    accountNumber: "",
+    account1Name: "account 1",
+    account2Name: "account 2",
     to: "",
 
 
@@ -54,11 +55,11 @@ let banking = {
     balance: function(accountName){
         let balance;
         if(accountName == "account 1"){
-            balance = this.account1;
+            balance = ("account 1 has " + this.account1 + " birr");
         }
 
         if(accountName == "account 2"){
-            balance = this.account1;
+            balance = ("account 2 has " + this.account2 + " birr");
         }
 
         return balance;
@@ -80,6 +81,8 @@ let banking = {
             this.account1 = this.account1 + parseFloat(amount);
             trans = (" you have sucessfuly transfered " + amount + " birr to account 1");
         }
+
+        return trans;
     },
 
     // banker function
@@ -108,6 +111,43 @@ let banking = {
 
 
 }
+
+// accept enteries
+
+let choosen = prompt(" enter your desired application (depo, with, bal, trans) ");
+
+if (choosen == "depo"){
+    banking.amount = prompt(" enter the amount of money to deposit: ");
+    banking.accountName = prompt(" enter the account's name");
+    banking.accountNumber = prompt(" enter the account's number");
+}
+
+if (choosen == "with"){
+    banking.amount = prompt(" enter the amount of money to withdraw: ");
+    banking.accountName = prompt(" enter the account's name");
+    banking.accountNumber = prompt(" enter the account's number");
+}
+
+if (choosen == "bal"){
+    banking.accountName = prompt(" enter the account's name");
+}
+
+if (choosen == "trans") {
+    banking.amount = prompt(" enter the amount to transfer: ");
+    banking.to = prompt(" enter the  transfer direction: ");
+}
+
+// Imeidately invoking function expression
+
+(function (){
+
+    console.log("*********************************************")
+
+    console.log(banking.banker(choosen));
+
+    console.log("*********************************************")
+
+})();
 
 
 
