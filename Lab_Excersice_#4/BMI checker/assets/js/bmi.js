@@ -43,15 +43,16 @@ let personalProfile = {
 
 // Receive the values from input and assign to object properties
 
-personalProfile.weight = prompt("insert your weight: ");
-personalProfile.height = prompt("insert your height: ");
-
-personalProfile.bmi = personalProfile.calcBmi();
+personalProfile.weight = prompt("insert your weight in kg: ");
+personalProfile.height = prompt("insert your height in meter: ");
 
 
 // display the result using self Ivoking function
 
 (function(){
+
+    personalProfile.bmi = personalProfile.calcBmi();
+
     console.log("**************************************************************");
     console.log("your Bmi value is " + personalProfile.bmi + ".");
     console.log("your bmi status is  " + personalProfile.checkBmi() + ".");

@@ -7,8 +7,9 @@ let banking = {
     account2: 60.0,
     account2Number: 2,
     amount: 0,
-    account1Name: "account 1",
-    account2Name: "account 2",
+    accountName: "",
+    // account1Name: "account 1",
+    // account2Name: "account 2",
     to: "",
 
 
@@ -34,17 +35,30 @@ let banking = {
     // withdrawal function
 
     withdrawal: function(amount, accountName, accountNumber){
+        let withd1 = this.account1 - parseFloat(amount);
+        let withd2 = this.account2 - parseFloat(amount);
         let withdraw;
-        if ((accountName == "account 1") && (this.account1Number == parseInt(accountNumber))){
-            this.account1 = this.account1 - parseFloat(amount);
-            withdraw = (" you have sucessfully withdrawed " + amount +" birr to account 1");
 
+        if ((this.account1 < 50) || (this.account2 < 50)){
+            withdraw = (" your account have insufichient balance.");
         }
 
-        if ((accountName == "account 2") && (this.account2Number ==parseInt(accountNumber))){
-            this.account2 = this.account1 - parseFloat(amount);
-            withdraw = (" you have sucessfully withdrawed " + amount +" birr to account 2");
+        else if ((withd1 < 50) || (withd2 < 50)){
+            withdraw = (" you can not withdraw this much ammount. ( your balance needs to be atleast 50 birr)");
+        }
 
+        else {
+            if ((accountName == "account 1") && (this.account1Number == parseInt(accountNumber))){
+                this.account1 = withd1;
+                withdraw = (" you have sucessfully withdrawed " + amount +" birr to account 1");
+
+            }
+
+            if ((accountName == "account 2") && (this.account2Number ==parseInt(accountNumber))){
+                this.account2 = withd2;
+                withdraw = (" you have sucessfully withdrawed " + amount +" birr to account 2");
+
+            }
         }
 
         return withdraw;
@@ -112,42 +126,54 @@ let banking = {
 
 }
 
-// accept enteries
+let choosen;
 
-let choosen = prompt(" enter your desired application (depo, with, bal, trans) ");
-
-if (choosen == "depo"){
-    banking.amount = prompt(" enter the amount of money to deposit: ");
-    banking.accountName = prompt(" enter the account's name");
-    banking.accountNumber = prompt(" enter the account's number");
-}
-
-if (choosen == "with"){
-    banking.amount = prompt(" enter the amount of money to withdraw: ");
-    banking.accountName = prompt(" enter the account's name");
-    banking.accountNumber = prompt(" enter the account's number");
-}
-
-if (choosen == "bal"){
-    banking.accountName = prompt(" enter the account's name");
-}
-
-if (choosen == "trans") {
-    banking.amount = prompt(" enter the amount to transfer: ");
-    banking.to = prompt(" enter the  transfer direction: ");
-}
-
-// Imeidately invoking function expression
-
+//
 (function (){
 
-    console.log("*********************************************")
+    let cont = "yes";
 
-    console.log(banking.banker(choosen));
+    while(cont == "yes"){
 
-    console.log("*********************************************")
+        // accept enteries
+        choosen = prompt(" enter your desired application (depo, with, bal, trans) ");
+
+        if (choosen == "depo"){
+            banking.amount = prompt(" enter the amount of money to deposit: ");
+            banking.accountName = prompt(" enter the account's name");
+            banking.accountNumber = prompt(" enter the account's number");
+        }
+
+        else if (choosen == "with"){
+            banking.amount = prompt(" enter the amount of money to withdraw: ");
+            banking.accountName = prompt(" enter the account's name");
+            banking.accountNumber = prompt(" enter the account's number");
+        }
+
+        else if (choosen == "bal"){
+            banking.accountName = prompt(" enter the account's name");
+        }
+
+        else if (choosen == "trans") {
+            banking.amount = prompt(" enter the amount to transfer: ");
+            banking.to = prompt(" enter the  transfer direction: ");
+        }
+
+
+        console.log("*********************************************")
+
+        console.log(banking.banker(choosen));
+
+        console.log("*********************************************")
+
+        cont = prompt("would you like to continue (yes or no)");
+
+    }
+
+    
 
 })();
+
 
 
 

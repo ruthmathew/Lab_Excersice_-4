@@ -80,35 +80,47 @@ let calculator = {
 
 }
 
-var arrayNumber;
+let choosen;
 
-// accept enteries
 
-let choosen = prompt(" enter your desired operation in this form (add, sub, mul, div)");
-
-if (choosen == "add" || choosen == "mul"){
-    arrayNumber = prompt(" enter the number of elements you want to operate with.");
-    // return arrayNumber;
-}
-
-if (choosen == "sub" || choosen == "div"){
-    calculator.firstNumber = prompt("enter the first number: ");
-    calculator.secondNumber = prompt("Enter the second number: ");
-}
-
-// insert the value of the array
-
-for (let i = 0; i < parseInt(arrayNumber); i++){
-    calculator.numberArray[i] = prompt(" number " + (i + 1));
-}
 
 (function (){
 
-    console.log("*********************************************")
+    let cont = "yes";
 
-    console.log(" the answer = " + calculator.calculate(choosen));
+    while(cont == "yes"){
 
-    console.log("*********************************************")
+        var arrayNumber;
+
+        // accept enteries
+
+        choosen = prompt(" enter your desired operation in this form (add, sub, mul, div)");
+
+        if (choosen == "add" || choosen == "mul"){
+            arrayNumber = prompt(" enter the number of elements you want to operate with.");
+        
+        }
+
+        if (choosen == "sub" || choosen == "div"){
+            calculator.firstNumber = prompt("enter the first number: ");
+            calculator.secondNumber = prompt("Enter the second number: ");
+        }
+
+        // insert the value of the array
+
+        for (let i = 0; i < parseInt(arrayNumber); i++){
+            calculator.numberArray[i] = prompt(" number " + (i + 1));
+        }
+
+        console.log("*********************************************")
+
+        console.log(" the answer = " + calculator.calculate(choosen));
+
+        console.log("*********************************************")
+
+        cont = prompt("would you like to continue (yes or no)");
+
+    }
 
 })();
 
